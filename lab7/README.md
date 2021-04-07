@@ -11,4 +11,8 @@
 
 График зависимости размерности Минковского от размера ячейки
 
-![image](https://user-images.githubusercontent.com/47506579/113861119-84527700-97af-11eb-8806-2facaf9fc043.png)
+![image](https://user-images.githubusercontent.com/47506579/113880635-5592cb80-97c4-11eb-9a62-2000004dda52.png)
+
+График зависимости площади от размера ячейки
+
+![image](https://user-images.githubusercontent.com/47506579/113880712-62afba80-97c4-11eb-8070-6f4d09453142.png)

@@ -56,13 +56,8 @@ def getD(img):
   vol3=getVol(u3,b3)
   A1=(vol2-vol1)/2
   A2=(vol3-vol2)/2
-  D=2-((np.log(A1)-np.log(A2))/(np.log(2)-np.log(3)))
-  #D=2-np.log(A2)/np.log(2)
+  D=((np.log(A1)-np.log(A2))/(np.log(2)-np.log(3)))
   return D
-
-s=min(grayImage.shape[0],grayImage.shape[1])
-s1=min(10,s//10)+1
-sizes = [i for i in range(s1, s, s//10)]
 
 sizes = [30, 50, 100,150, 200 ,300, 400, 500]
 
@@ -75,7 +70,7 @@ for size in sizes:
         tmp+=getD(grayImage[i:i + size, j: j + size])
         #print(tmp)
       
-  D.append(np.abs(tmp))
+  D.append(2-np.abs(tmp/count))
 
 line = plt.plot(sizes, D)
 plt.xlabel('size')

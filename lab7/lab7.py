@@ -44,7 +44,7 @@ def getVol(u,b):
       vol=vol+u[i][j]-b[i][j]
   return vol
 
-def getD(img):
+def getA(img):
   u1=ublanket(img)
   u2=ublanket(u1)
   u3=ublanket(u2)
@@ -56,25 +56,44 @@ def getD(img):
   vol3=getVol(u3,b3)
   A1=(vol2-vol1)/2
   A2=(vol3-vol2)/2
+  #D=((np.log(A1)-np.log(A2))/(np.log(2)-np.log(3)))
+  #D=2-np.log(A2)/np.log(2)
+  return A1, A2
+
+def getD(A1, A2):
   D=((np.log(A1)-np.log(A2))/(np.log(2)-np.log(3)))
   return D
 
-sizes = [30, 50, 100,150, 200 ,300, 400, 500]
+sizes = [20, 30, 50, 100,150,300, 400]
 
 D = []
-
+A = []
 for size in sizes:
   tmp=0.0
+  count=0.0
+  D_=0.0
+  A1_=0.0
+  A_=0.0
   for i in range(0, grayImage.shape[0], size):
       for j in range(0, grayImage.shape[1], size):
-        tmp+=getD(grayImage[i:i + size, j: j + size])
+        tmp1, tmp2=getA(grayImage[i:i + size, j: j + size])
+        #D_+=getD(tmp1, tmp2)
+        A1_+=tmp1;
+        A_+=tmp2;
+        count+=1.0
         #print(tmp)
       
-  D.append(2-np.abs(tmp/count))
+  D.append(2-np.abs(getD(A1_, A_)))
+  A.append(A_)
 
 line = plt.plot(sizes, D)
 plt.xlabel('size')
 plt.ylabel('D')
+plt.show()
+
+line = plt.plot(sizes, A)
+plt.xlabel('size')
+plt.ylabel('A')
 plt.show()
 
 D
